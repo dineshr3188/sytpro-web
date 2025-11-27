@@ -1,0 +1,19 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+build/
+
+# System files
+.DS_Store
+
+# IDE folders
+.idea/
+
+# Logs
+*.log
+
+# Environment files
+.env
+
