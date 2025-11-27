@@ -1,10 +1,6 @@
 import React from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-//import qr from "../assets/qr.png"; // your QR code image
-import phone1 from "../assets/screen1.png"; // replace with your images
-import phone2 from "../assets/screen2.png";
-import phone3 from "../assets/screen3.png";
 
 export default function DownloadApp() {
   return (
@@ -85,23 +81,9 @@ export default function DownloadApp() {
           </p>
 
           <div className="mt-16 grid md:grid-cols-3 gap-10">
-            <img
-              src={phone1}
-              alt="SytPro Screenshot 1"
-              className="rounded-3xl shadow-xl mx-auto w-64"
-            />
-
-            <img
-              src={phone2}
-              alt="SytPro Screenshot 2"
-              className="rounded-3xl shadow-xl mx-auto w-64"
-            />
-
-            <img
-              src={phone3}
-              alt="SytPro Screenshot 3"
-              className="rounded-3xl shadow-xl mx-auto w-64"
-            />
+            <img src="/assets/screen1.png" className="rounded-3xl shadow-xl mx-auto w-64" />
+            <img src="/assets/screen2.png" className="rounded-3xl shadow-xl mx-auto w-64" />
+            <img src="/assets/screen3.png" className="rounded-3xl shadow-xl mx-auto w-64" />
           </div>
         </div>
       </section>
