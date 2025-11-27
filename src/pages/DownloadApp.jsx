@@ -81,9 +81,9 @@ export default function DownloadApp() {
           </p>
 
           <div className="mt-16 grid md:grid-cols-3 gap-10">
-            <img src="/assets/screen1.png" className="rounded-3xl shadow-xl mx-auto w-64" />
-            <img src="/assets/screen2.png" className="rounded-3xl shadow-xl mx-auto w-64" />
-            <img src="/assets/screen3.png" className="rounded-3xl shadow-xl mx-auto w-64" />
+            <img src="https://construction-tracker-east1.s3.amazonaws.com/assets/screen1.png" className="rounded-3xl shadow-xl mx-auto w-64" />
+            <img src="https://construction-tracker-east1.s3.amazonaws.com/assets/screen2.png" className="rounded-3xl shadow-xl mx-auto w-64" />
+            <img src="https://construction-tracker-east1.s3.amazonaws.com/assets/screen3.png" className="rounded-3xl shadow-xl mx-auto w-64" />
           </div>
         </div>
       </section>

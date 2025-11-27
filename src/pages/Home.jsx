@@ -54,8 +54,8 @@ export default function Home() {
             <div className="bg-white rounded-3xl shadow-2xl overflow-hidden border w-[450px]">
 
               <video
-                src="/assets/hero-demo.mp4"
-                poster="/assets/hero-poster.png"
+                src="https://construction-tracker-east1.s3.amazonaws.com/assets/hero-demo.mp4"
+                poster="https://construction-tracker-east1.s3.amazonaws.com/assets/hero-poster.png"
                 controls
                 className="rounded-3xl w-full h-[260px] object-cover shadow-xl border"
               >
@@ -149,35 +149,35 @@ export default function Home() {
               {/* Slide 1 */}
               <SwiperSlide className="flex justify-center">
                 <div className="w-[260px] bg-white rounded-[35px] p-4 shadow-2xl border">
-                  <img src="/assets/screen1.png" className="w-full rounded-2xl" />
+                  <img src="https://construction-tracker-east1.s3.amazonaws.com/assets/screen1.png" className="w-full rounded-2xl" />
                 </div>
               </SwiperSlide>
 
               {/* Slide 2 */}
               <SwiperSlide className="flex justify-center">
                 <div className="w-[260px] bg-white rounded-[35px] p-4 shadow-2xl border">
-                  <img src="/assets/screen2.png" className="w-full rounded-2xl" />
+                  <img src="https://construction-tracker-east1.s3.amazonaws.com/assets/screen2.png" className="w-full rounded-2xl" />
                 </div>
               </SwiperSlide>
 
               {/* Slide 3 */}
               <SwiperSlide className="flex justify-center">
                 <div className="w-[260px] bg-white rounded-[35px] p-4 shadow-2xl border">
-                  <img src="/assets/screen3.png" className="w-full rounded-2xl" />
+                  <img src="https://construction-tracker-east1.s3.amazonaws.com/assets/screen3.png" className="w-full rounded-2xl" />
                 </div>
               </SwiperSlide>
 
               {/* Slide 4 */}
               <SwiperSlide className="flex justify-center">
                 <div className="w-[260px] bg-white rounded-[35px] p-4 shadow-2xl border">
-                  <img src="/assets/screen4.png" className="w-full rounded-2xl" />
+                  <img src="https://construction-tracker-east1.s3.amazonaws.com/assets/screen4.png" className="w-full rounded-2xl" />
                 </div>
               </SwiperSlide>
 
               {/* Slide 5 */}
               <SwiperSlide className="flex justify-center">
                 <div className="w-[260px] bg-white rounded-[35px] p-4 shadow-2xl border">
-                  <img src="/assets/screen5.png" className="w-full rounded-2xl" />
+                  <img src="https://construction-tracker-east1.s3.amazonaws.com/assets/screen5.png" className="w-full rounded-2xl" />
                 </div>
               </SwiperSlide>
             </Swiper>
