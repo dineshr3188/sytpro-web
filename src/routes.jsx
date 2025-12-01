@@ -10,6 +10,8 @@ import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
 import Refund from "./pages/Refund";
 import Download from "./pages/DownloadApp";
+import ShippingPolicy from "./pages/ShippingPolicy";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
 
 import AdminLogin from "./admin/AdminLogin";
 import AdminDashboard from "./admin/AdminDashboard";
@@ -28,6 +30,8 @@ export default function RoutesList() {
       <Route path="/terms-and-conditions" element={<Terms />} />
       <Route path="/refund-and-cancellation" element={<Refund />} />
       <Route path="/download" element={<Download />} />
+      <Route path="/shipping-policy" element={<ShippingPolicy />} />
+      <Route path="/privacy-policy" element={<PrivacyPolicy />} />
 
       {/* Admin */}
       <Route path="/admin" element={<AdminLogin />} />
