@@ -6,13 +6,11 @@ import Features from "./pages/Features";
 import Pricing from "./pages/Pricing";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
-import Privacy from "./pages/Privacy";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
 import Terms from "./pages/Terms";
 import Refund from "./pages/Refund";
 import Download from "./pages/DownloadApp";
 import ShippingPolicy from "./pages/ShippingPolicy";
-import PrivacyPolicy from "./pages/PrivacyPolicy";
-
 import AdminLogin from "./admin/AdminLogin";
 import AdminDashboard from "./admin/AdminDashboard";
 import TenantsList from "./admin/TenantsList";
