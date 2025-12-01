@@ -9,7 +9,9 @@ export default function Footer() {
       <nav>
         <Link to="/privacy-policy">Privacy Policy</Link>
         <Link to="/terms-and-conditions">Terms & Conditions</Link>
-        <Link to="/refund-and-cancellation">Refund Policy</Link>
+        <Link to="/refund-and-cancellation">Cancellation & Refund Policy</Link>
+        <Link to="/shipping-policy">Shipping Policy</Link>
+        <Link to="/contact">Contact Us</Link>
       </nav>
     </footer>
   );
