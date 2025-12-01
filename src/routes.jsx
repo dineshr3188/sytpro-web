@@ -16,6 +16,10 @@ import AdminDashboard from "./admin/AdminDashboard";
 import TenantsList from "./admin/TenantsList";
 
 export default function RoutesList() {
+
+    function requireAdminAuth() {
+      return localStorage.getItem("ADMIN_TOKEN") !== null;
+    }
   return (
     <Routes>
       {/* Public Pages */}
@@ -32,8 +36,15 @@ export default function RoutesList() {
 
       {/* Admin */}
       <Route path="/admin" element={<AdminLogin />} />
-      <Route path="/admin/dashboard" element={<AdminDashboard />} />
-      <Route path="/admin/tenants" element={<TenantsList />} />
+      <Route
+        path="/admin/dashboard"
+        element={requireAdminAuth() ? <AdminDashboard /> : <AdminLogin />}
+      />
+
+      <Route
+        path="/admin/tenants"
+        element={requireAdminAuth() ? <TenantsList /> : <AdminLogin />}
+      />
     </Routes>
   );
 }

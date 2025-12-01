@@ -1,33 +1,61 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { postJson } from "../services/api";
 
 export default function AdminLogin() {
-  const [form, setForm] = useState({ email: "", password: "" });
-  const [error, setError] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
-  async function login(e) {
+  async function handleLogin(e) {
     e.preventDefault();
-    const res = await postJson("/auth/admin/login", form);
 
-    if (res.ok) {
-      window.location.href = "/admin/dashboard";
+    const res = await postJson("/admin/auth/login", { email, password });
+
+    if (res.success) {
+      localStorage.setItem("ADMIN_TOKEN", res.token);
+      navigate("/admin/dashboard");
     } else {
-      setError(res.message || "Login failed");
+      alert(res.message || "Invalid login");
     }
   }
 
   return (
-    <div className="admin-login">
-      <h1>Admin Login</h1>
+    <div className="min-h-screen flex items-center justify-center bg-gray-100 px-6">
 
-      <form onSubmit={login}>
-        <input placeholder="Email" onChange={(e) => setForm({ ...form, email: e.target.value })} />
-        <input type="password" placeholder="Password" onChange={(e) => setForm({ ...form, password: e.target.value })} />
+      <div className="bg-white p-10 rounded-2xl shadow-xl w-full max-w-md">
+        <h1 className="text-3xl font-bold text-center mb-8 text-gray-900">
+          Admin Login
+        </h1>
 
-        <button className="btn-primary">Login</button>
-      </form>
+        <form onSubmit={handleLogin} className="space-y-6">
+          <input
+            type="email"
+            placeholder="Admin Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="w-full p-3 border rounded-lg"
+            required
+          />
 
-      {error && <p className="error">{error}</p>}
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="w-full p-3 border rounded-lg"
+            required
+          />
+
+          <button
+            type="submit"
+            className="w-full bg-blue-600 text-white p-3 rounded-lg hover:bg-blue-700 transition"
+          >
+            Login
+          </button>
+        </form>
+      </div>
+
     </div>
   );
 }

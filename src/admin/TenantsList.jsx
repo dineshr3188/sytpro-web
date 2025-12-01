@@ -1,49 +1,66 @@
 import React, { useEffect, useState } from "react";
+import AdminLayout from "./AdminLayout";
 import { getJson, postJson } from "../services/api";
 
 export default function TenantsList() {
   const [tenants, setTenants] = useState([]);
 
   useEffect(() => {
-    load();
+    loadTenants();
   }, []);
 
-  async function load() {
-    const data = await getJson("/admin/tenants");
-    setTenants(data.tenants || []);
+  async function loadTenants() {
+    const res = await getJson("/admin/tenants");
+    setTenants(res.data || []);
   }
 
-  async function toggle(t, action) {
-    await postJson(`/admin/tenants/${t.id}/${action}`);
-    load();
+  async function toggleStatus(id, currentStatus) {
+    await postJson("/admin/tenants/status", {
+      tenantId: id,
+      status: currentStatus === "ACTIVE" ? "SUSPENDED" : "ACTIVE",
+    });
+
+    loadTenants();
   }
 
   return (
-    <div className="page">
-      <h1>Tenants</h1>
+    <AdminLayout>
+      <h1 className="text-3xl font-bold mb-6">Tenants</h1>
 
-      <table className="table">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Status</th>
-            <th>Suspend/Activate</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          {tenants.map((t) => (
-            <tr key={t.id}>
-              <td>{t.name}</td>
-              <td>{t.subscriptionStatus}</td>
-              <td>
-                <button onClick={() => toggle(t, "suspend")}>Suspend</button>
-                <button onClick={() => toggle(t, "activate")}>Activate</button>
-              </td>
+      <div className="bg-white p-6 rounded-xl shadow">
+        <table className="w-full border-collapse">
+          <thead>
+            <tr className="border-b">
+              <th className="p-3 text-left">Tenant</th>
+              <th className="p-3 text-left">Email</th>
+              <th className="p-3 text-left">Status</th>
+              <th className="p-3 text-left">Action</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+          </thead>
+
+          <tbody>
+            {tenants.map(t => (
+              <tr key={t.id} className="border-b">
+                <td className="p-3">{t.name}</td>
+                <td className="p-3">{t.email}</td>
+                <td className="p-3">{t.status}</td>
+
+                <td className="p-3">
+                  <button
+                    onClick={() => toggleStatus(t.id, t.status)}
+                    className={`px-4 py-2 rounded text-white ${
+                      t.status === "ACTIVE" ? "bg-red-500" : "bg-green-600"
+                    }`}
+                  >
+                    {t.status === "ACTIVE" ? "Suspend" : "Activate"}
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+    </AdminLayout>
   );
 }
