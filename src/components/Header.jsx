@@ -20,13 +20,13 @@ export default function Header() {
           <Link to="/contact">Contact</Link>
         </nav>
 
-        {/* CTA */}
-        <a
-          href="/admin"
-          className="px-5 py-2 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700 transition"
-        >
-          Admin Login
-        </a>
+       {/* Admin Login Button */}
+               <Link
+                 to="/admin"
+                 className="px-5 py-2 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700 transition"
+               >
+                 Admin Login
+               </Link>
       </div>
     </header>
   );
