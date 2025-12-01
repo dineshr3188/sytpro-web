@@ -24,7 +24,6 @@ export default function RoutesList() {
       <Route path="/pricing" element={<Pricing />} />
       <Route path="/about" element={<About />} />
       <Route path="/contact" element={<Contact />} />
-      <Route path="/privacy-policy" element={<Privacy />} />
       <Route path="/terms-and-conditions" element={<Terms />} />
       <Route path="/refund-and-cancellation" element={<Refund />} />
       <Route path="/download" element={<Download />} />
