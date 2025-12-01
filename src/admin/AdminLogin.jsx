@@ -11,18 +11,16 @@ export default function AdminLogin() {
     e.preventDefault();
 
     try {
-      // CALL CORRECT BACKEND API
       const res = await postJson("/auth/signin", {
         usernameOrEmail: email,
         password: password,
       });
 
-      // BACKEND RETURNS { accessToken, tokenType }
       if (res.accessToken) {
         localStorage.setItem("ADMIN_TOKEN", res.accessToken);
 
-        // redirect
-        navigate("/admin/dashboard");
+        // ⭐⭐ THIS IS WHERE IT GOES ⭐⭐
+        navigate("/admin/dashboard", { replace: true });
       } else {
         alert("Invalid login");
       }
@@ -33,7 +31,6 @@ export default function AdminLogin() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 px-6">
-
       <div className="bg-white p-10 rounded-2xl shadow-xl w-full max-w-md">
         <h1 className="text-3xl font-bold text-center mb-8 text-gray-900">
           Admin Login
@@ -66,7 +63,6 @@ export default function AdminLogin() {
           </button>
         </form>
       </div>
-
     </div>
   );
 }

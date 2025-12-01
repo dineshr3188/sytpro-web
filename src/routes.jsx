@@ -14,12 +14,10 @@ import ShippingPolicy from "./pages/ShippingPolicy";
 import AdminLogin from "./admin/AdminLogin";
 import AdminDashboard from "./admin/AdminDashboard";
 import TenantsList from "./admin/TenantsList";
+import ProtectedRoute from "./admin/ProtectedRoute";
+
 
 export default function RoutesList() {
-
-    function requireAdminAuth() {
-      return localStorage.getItem("ADMIN_TOKEN") !== null;
-    }
   return (
     <Routes>
       {/* Public Pages */}
@@ -35,16 +33,26 @@ export default function RoutesList() {
       <Route path="/privacy-policy" element={<PrivacyPolicy />} />
 
       {/* Admin */}
-      <Route path="/admin" element={<AdminLogin />} />
-      <Route
-        path="/admin/dashboard"
-        element={requireAdminAuth() ? <AdminDashboard /> : <AdminLogin />}
-      />
+     <Route path="/admin" element={<AdminLogin />} />
 
-      <Route
-        path="/admin/tenants"
-        element={requireAdminAuth() ? <TenantsList /> : <AdminLogin />}
-      />
+     <Route
+       path="/admin/dashboard"
+       element={
+         <ProtectedRoute>
+           <AdminDashboard />
+         </ProtectedRoute>
+       }
+     />
+
+     <Route
+       path="/admin/tenants"
+       element={
+         <ProtectedRoute>
+           <TenantsList />
+         </ProtectedRoute>
+       }
+     />
+
     </Routes>
   );
 }
