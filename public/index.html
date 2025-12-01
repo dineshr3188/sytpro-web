@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+
+    <!-- FIX 1: RELAX CSP SO FONTS WORK -->
+    <meta
+            http-equiv="Content-Security-Policy"
+            content="
+        default-src * 'self' data: blob:;
+        img-src * data:;
+        style-src * 'unsafe-inline' *;
+        font-src * data:;
+        script-src * 'unsafe-inline' 'unsafe-eval' *;
+      "
+    />
+
+    <!-- FIX 2: REQUIRED FOR SPA ROUTING ON GITHUB PAGES -->
+    <script type="text/javascript">
+        (function() {
+          let redirect = sessionStorage.redirect;
+          delete sessionStorage.redirect;
+          if (redirect && redirect !== location.pathname) {
+            history.replaceState(null, null, redirect);
+          }
+        })();
+    </script>
+
+    <!-- Required for correct Vite paths -->
+    <base href="/" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SytPro</title>
+</head>
+
+<body>
+<div id="root"></div>
+<script type="module" src="/src/main.jsx"></script>
+</body>
+</html>
