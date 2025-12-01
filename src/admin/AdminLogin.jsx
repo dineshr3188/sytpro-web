@@ -10,13 +10,24 @@ export default function AdminLogin() {
   async function handleLogin(e) {
     e.preventDefault();
 
-    const res = await postJson("/admin/auth/login", { email, password });
+    try {
+      // CALL CORRECT BACKEND API
+      const res = await postJson("/auth/signin", {
+        usernameOrEmail: email,
+        password: password,
+      });
 
-    if (res.success) {
-      localStorage.setItem("ADMIN_TOKEN", res.token);
-      navigate("/admin/dashboard");
-    } else {
-      alert(res.message || "Invalid login");
+      // BACKEND RETURNS { accessToken, tokenType }
+      if (res.accessToken) {
+        localStorage.setItem("ADMIN_TOKEN", res.accessToken);
+
+        // redirect
+        navigate("/admin/dashboard");
+      } else {
+        alert("Invalid login");
+      }
+    } catch (err) {
+      alert("Login failed. Incorrect email/password.");
     }
   }
 

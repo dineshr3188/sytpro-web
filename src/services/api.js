@@ -1,18 +1,25 @@
 export async function postJson(path, data) {
-  const res = await fetch(process.env.REACT_APP_API_BASE + path, {
+  const res = await fetch(`${import.meta.env.VITE_API_BASE}${path}`, {
     method: "POST",
-    body: JSON.stringify(data),
     headers: {
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
     },
-    credentials: "include"
+    body: JSON.stringify(data),
   });
+
+  if (!res.ok) {
+    throw new Error(`POST ${path} failed with status ${res.status}`);
+  }
+
   return res.json();
 }
 
 export async function getJson(path) {
-  const res = await fetch(process.env.REACT_APP_API_BASE + path, {
-    credentials: "include",
-  });
+  const res = await fetch(`${import.meta.env.VITE_API_BASE}${path}`);
+
+  if (!res.ok) {
+    throw new Error(`GET ${path} failed with status ${res.status}`);
+  }
+
   return res.json();
 }
