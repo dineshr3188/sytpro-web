@@ -42,8 +42,8 @@ export default function TenantsList() {
             {tenants.map(t => (
               <tr key={t.id} className="border-b">
                 <td className="p-3">{t.name}</td>
-                <td className="p-3">{t.email}</td>
-                <td className="p-3">{t.status}</td>
+                <td className="p-3">{t.contactEmail}</td>
+                <td className="p-3">{t.active ? "ACTIVE" : "INACTIVE"}</td>
 
                 <td className="p-3">
                   <button

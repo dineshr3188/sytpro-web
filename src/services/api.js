@@ -15,7 +15,13 @@ export async function postJson(path, data) {
 }
 
 export async function getJson(path) {
-  const res = await fetch(`${import.meta.env.VITE_API_BASE}${path}`);
+  const token = localStorage.getItem("ADMIN_TOKEN");
+
+  const res = await fetch(`${import.meta.env.VITE_API_BASE}${path}`, {
+    headers: {
+      "Authorization": `Bearer ${token}`,
+    },
+  });
 
   if (!res.ok) {
     throw new Error(`GET ${path} failed with status ${res.status}`);
