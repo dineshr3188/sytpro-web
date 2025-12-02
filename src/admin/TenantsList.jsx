@@ -11,7 +11,7 @@ export default function TenantsList() {
 
   async function loadTenants() {
     const res = await getJson("/admin/tenants");
-    setTenants(res.data || []);
+    setTenants(res || []);        // ✅ FIX 1
   }
 
   async function toggleStatus(id, currentStatus) {
@@ -47,12 +47,14 @@ export default function TenantsList() {
 
                 <td className="p-3">
                   <button
-                    onClick={() => toggleStatus(t.id, t.status)}
+                    onClick={() =>
+                      toggleStatus(t.id, t.active ? "ACTIVE" : "INACTIVE")
+                    }
                     className={`px-4 py-2 rounded text-white ${
-                      t.status === "ACTIVE" ? "bg-red-500" : "bg-green-600"
+                      t.active ? "bg-red-500" : "bg-green-600"
                     }`}
                   >
-                    {t.status === "ACTIVE" ? "Suspend" : "Activate"}
+                    {t.active ? "Suspend" : "Activate"}
                   </button>
                 </td>
               </tr>
@@ -60,7 +62,6 @@ export default function TenantsList() {
           </tbody>
         </table>
       </div>
-
     </AdminLayout>
   );
 }
