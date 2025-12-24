@@ -111,7 +111,9 @@ export default function ResetPassword() {
       </div>
     </div>
   );
+}
 
+/* ✅ STYLES MUST BE OUTSIDE THE COMPONENT */
 const styles = {
   center: {
     minHeight: "100vh",
@@ -172,7 +174,3 @@ const styles = {
     fontSize: 14,
   },
 };
-
-}
-
-
