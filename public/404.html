@@ -4,8 +4,13 @@
     <meta charset="utf-8" />
     <title>Redirecting…</title>
     <script>
-        sessionStorage.redirect = location.pathname;
-        window.location.replace("/");
+        var redirectTo =
+        window.location.pathname +
+        window.location.search +
+        window.location.hash;
+
+     // Redirect to index.html with original route encoded
+     window.location.replace("/index.html" + redirectTo);
     </script>
 </head>
 <body></body>
