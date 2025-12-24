@@ -8,31 +8,32 @@ export default function ResetPassword() {
   const [confirm, setConfirm] = useState("");
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
+  const [error, setError] = useState("");
   const [valid, setValid] = useState(true);
 
-  // Optional: validate token on load
   useEffect(() => {
     if (!token) {
       setValid(false);
-      setMessage("Invalid or missing reset token.");
+      setError("Invalid or missing reset token.");
     }
   }, [token]);
 
   const submit = async (e) => {
     e.preventDefault();
+    setError("");
+    setMessage("");
 
     if (password.length < 8) {
-      setMessage("Password must be at least 8 characters.");
+      setError("Password must be at least 8 characters.");
       return;
     }
 
     if (password !== confirm) {
-      setMessage("Passwords do not match.");
+      setError("Passwords do not match.");
       return;
     }
 
     setLoading(true);
-    setMessage("");
 
     try {
       const res = await fetch(
@@ -40,57 +41,74 @@ export default function ResetPassword() {
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            token,
-            newPassword: password,
-          }),
+          body: JSON.stringify({ token, newPassword: password }),
         }
       );
 
       const text = await res.text();
-
       if (!res.ok) throw new Error(text);
 
       setMessage("✅ Password reset successful. You may close this page.");
     } catch (e) {
-      setMessage("❌ Reset link expired or invalid.");
+      setError("❌ Reset link expired or invalid.");
     } finally {
       setLoading(false);
     }
   };
 
   if (!valid) {
-    return <p style={{ padding: 20 }}>{message}</p>;
+    return (
+      <div style={styles.center}>
+        <div style={styles.card}>
+          <h2 style={styles.title}>Reset Password</h2>
+          <p style={styles.error}>{error}</p>
+        </div>
+      </div>
+    );
   }
 
   return (
-    <div style={{ maxWidth: 400, margin: "80px auto" }}>
-      <h2>Reset Password</h2>
+    <div style={styles.center}>
+      <div style={styles.card}>
+        <h2 style={styles.title}>Reset Password</h2>
+        <p style={styles.subtitle}>
+          Enter a new password for your account
+        </p>
 
-      <form onSubmit={submit}>
-        <input
-          type="password"
-          placeholder="New password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
+        <form onSubmit={submit}>
+          <input
+            type="password"
+            placeholder="New password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            style={styles.input}
+            required
+          />
 
-        <input
-          type="password"
-          placeholder="Confirm password"
-          value={confirm}
-          onChange={(e) => setConfirm(e.target.value)}
-          required
-          style={{ marginTop: 10 }}
-        />
+          <input
+            type="password"
+            placeholder="Confirm password"
+            value={confirm}
+            onChange={(e) => setConfirm(e.target.value)}
+            style={{ ...styles.input, marginTop: 12 }}
+            required
+          />
 
-        <button disabled={loading} style={{ marginTop: 20 }}>
-          {loading ? "Resetting..." : "Reset Password"}
-        </button>
-      </form>
+          {error && <p style={styles.error}>{error}</p>}
+          {message && <p style={styles.success}>{message}</p>}
 
-      {message && <p style={{ marginTop: 20 }}>{message}</p>}
+          <button
+            type="submit"
+            disabled={loading}
+            style={{
+              ...styles.button,
+              opacity: loading ? 0.7 : 1,
+            }}
+          >
+            {loading ? "Resetting..." : "Reset Password"}
+          </button>
+        </form>
+      </div>
     </div>
   );
 }
