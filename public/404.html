@@ -4,9 +4,12 @@
     <meta charset="utf-8" />
     <title>Redirecting…</title>
     <script>
-        window.location.replace(
-    "/index.html" + window.location.search
-  );
+        sessionStorage.redirect =
+      window.location.pathname +
+      window.location.search +
+      window.location.hash;
+
+    window.location.replace("/index.html");
     </script>
 </head>
 <body></body>
