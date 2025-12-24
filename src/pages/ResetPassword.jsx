@@ -111,4 +111,68 @@ export default function ResetPassword() {
       </div>
     </div>
   );
+
+const styles = {
+  center: {
+    minHeight: "100vh",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    background: "#f5f7fb",
+    padding: 16,
+  },
+  card: {
+    width: "100%",
+    maxWidth: 420,
+    background: "#fff",
+    borderRadius: 10,
+    padding: "32px 28px",
+    boxShadow: "0 10px 25px rgba(0,0,0,0.08)",
+  },
+  title: {
+    marginBottom: 6,
+    fontSize: 22,
+    fontWeight: 600,
+    textAlign: "center",
+  },
+  subtitle: {
+    marginBottom: 24,
+    fontSize: 14,
+    color: "#666",
+    textAlign: "center",
+  },
+  input: {
+    width: "100%",
+    padding: "12px 14px",
+    borderRadius: 6,
+    border: "1px solid #ccc",
+    fontSize: 14,
+    outline: "none",
+  },
+  button: {
+    marginTop: 20,
+    width: "100%",
+    padding: "12px",
+    borderRadius: 6,
+    border: "none",
+    background: "#2563eb",
+    color: "#fff",
+    fontSize: 15,
+    fontWeight: 500,
+    cursor: "pointer",
+  },
+  error: {
+    marginTop: 12,
+    color: "#dc2626",
+    fontSize: 14,
+  },
+  success: {
+    marginTop: 12,
+    color: "#16a34a",
+    fontSize: 14,
+  },
+};
+
 }
+
+
