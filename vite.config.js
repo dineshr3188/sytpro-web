@@ -3,7 +3,7 @@ import react from '@vitejs/plugin-react'
 
 // If deploying to GitHub Pages, set base: "/repo-name/"
 export default defineConfig({
-  base: '/sytpro-web/',
+  base: '/',
   plugins: [react()],
   define: {
       // 🔥 Force the production build to include API base URL
