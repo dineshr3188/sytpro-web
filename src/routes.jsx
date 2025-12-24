@@ -15,6 +15,7 @@ import AdminLogin from "./admin/AdminLogin";
 import AdminDashboard from "./admin/AdminDashboard";
 import TenantsList from "./admin/TenantsList";
 import ProtectedRoute from "./admin/ProtectedRoute";
+import ResetPassword from "./pages/ResetPassword";
 
 
 export default function RoutesList() {
@@ -31,6 +32,7 @@ export default function RoutesList() {
       <Route path="/download" element={<Download />} />
       <Route path="/shipping-policy" element={<ShippingPolicy />} />
       <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+      <Route path="/reset-password" element={<ResetPassword />} />
 
       {/* Admin */}
      <Route path="/admin" element={<AdminLogin />} />
